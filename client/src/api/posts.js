@@ -6,7 +6,7 @@ export const getPostRequest = (id) => axios.get("/api/posts/" + id);
 
 export const deletePostRequest = (id) => axios.delete("/api/posts/" + id);
 
-export const createPostRequest = (post) => {
+export const createPostRequest = (post) => { 
   const form = new FormData();
   for (let key in post) {
     form.append(key, post[key]);
