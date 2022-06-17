@@ -6,6 +6,24 @@ import { VscEmptyWindow } from "react-icons/vsc";
 export function HomePage() {
   const { posts } = usePosts();
 
+  const handleSharing = async () => {
+    console.log(navigator)
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Something",
+          text: "Hello, please come visit my website",
+          url: "www.website.com.br",
+        })
+        .then(() => {
+          console.log("Successfully shared");
+        })
+        .catch((error) => {
+          console.error("Something went wrong", error);
+        });
+    }
+  };
+
   const renderPost = () => {
     if (posts.length === 0)
       return (
@@ -36,6 +54,11 @@ export function HomePage() {
         >
           Create Post
         </Link>
+        <div>
+            <button onClick={handleSharing} className="bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500">
+              Create link
+            </button>
+          </div>
       </header>
 
       {renderPost()}
